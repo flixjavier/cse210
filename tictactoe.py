@@ -5,7 +5,7 @@ Course: CSE210
 Date: April 27
 '''
 
-print("Welcome to tictactoe\n")
+print("Welcome to tictactoe")
 
 #Create 3X3 board
 def create_board():
@@ -22,7 +22,6 @@ GameRunning = True
 
 #print the game board
 def printBoard(values):
-    print("\n")
     print("     |     |")
     print("  {}  |  {}  |  {}".format(values[0],values[1], values[2]))
     print("_____|_____|_____")
@@ -38,15 +37,19 @@ def printBoard(values):
 def player_input():
     global board
     global current_player
-    inp = int(input("Enter a number 1-9: "))
-    if inp >= 1 and inp <= 9:
-        if board[inp-1] == "X" or board[inp-1] == "O":
-            print("\nspot already taken")
+    count = 1
+    print(f"Player {current_player} is choosing.")
+    while count > 0:
+        inp = int(input("Enter a number 1-9: "))
+        if inp >= 1 and inp <= 9:
+            if board[inp-1] == "X" or board[inp-1] == "O":
+                print("\nspot already taken. Choose again")
+
+            else:
+                board[inp-1] = current_player
+                count = 0
         else:
-            board[inp-1] = current_player
-    
-    else:
-        print("\nChoose a number between 1-9")
+            print("\nChoose a number between 1-9")
 
 #Check win or tie: horizontal, vertical, diogonal and tie
 def checkhorizontle(board):
