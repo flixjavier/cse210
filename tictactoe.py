@@ -7,11 +7,18 @@ Date: April 27
 
 print("Welcome to tictactoe\n")
 
+#Create 3X3 board
 def create_board():
     values=[]
     for number in range(9):
         values.append(number + 1)
     return values
+
+#variables
+board = create_board()
+current_player = "X"
+winner = None
+GameRunning = True
 
 #print the game board
 def printBoard(values):
@@ -41,7 +48,7 @@ def player_input():
     else:
         print("\nChoose a number between 1-9")
 
-#Check win or tie
+#Check win or tie: horizontal, vertical, diogonal and tie
 def checkhorizontle(board):
     global winner
     if board[0] == board[1] == board[2]:
@@ -82,7 +89,7 @@ def checktie(board):
             return False 
     GameRunning=False 
     printBoard(board)
-    print(f"It is a TIE!!!! thank you for playing") 
+    print(f"\nIt is a TIE!!!! thank you for playing") 
     return True
     
 #switch player 
@@ -97,15 +104,11 @@ def switchPlayer ():
 def checkWin():
     global GameRunning
     if checkhorizontle(board) or checkdiagonal(board) or checkvertical(board):
-        print (f"The winner is {winner}")
+        print (f"\nThe winner is {winner}")
         printBoard(board)
         print("Good game. Thanks for playing!")
         GameRunning=False
 
-board = create_board()
-current_player = "X"
-winner = None
-GameRunning = True
 def main():
     while GameRunning==True:
         printBoard(board)
