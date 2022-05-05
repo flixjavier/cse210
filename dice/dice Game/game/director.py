@@ -33,7 +33,9 @@ class Director:
         Args:
             self (Director): an instance of Director.
         """
-        print("Welcome to Dice Game.\nAre you Willing To Risk Everything?\nRoll the dice and get surprised.\n")
+        print("Welcome to Dice Game.\nAre you Willing To Risk Everything?\nRoll the dice and get surprised.")
+        print("Points:\n1's = 100\n5's = 50\nIf you do not roll at least one 1 or 5,\nGAME OVER!!!\n")
+        
         while self.is_playing:
             self.get_inputs()
             self.do_updates()
@@ -76,9 +78,6 @@ class Director:
             self.score += die.points
         """ print(f"the dice score is {self.score}") """
         self.total_score += self.score
-        if self.score == 0:
-            print("Sorry, You did not get any 1's or 5's!!!\nGAME OVER")
-            self.is_playing = False
 
     def do_outputs(self):
         """Displays the dice and the score. Also asks the player if they want to roll again. 
@@ -94,5 +93,10 @@ class Director:
             die = self.dice[i]
             values += f"{die.value} "
         print(f"You rolled: {values}")
-        print(f"Your score is: {self.total_score}\n")
-        self.is_playing == (self.score > 0)
+        #*Game Over message, when the player gets no 1's or 5's. 
+        if self.score == 0:
+            print("Sorry, You did not get any 1's or 5's!!!\nGAME OVER")
+            self.is_playing = False
+        else:
+            print(f"Your score is: {self.total_score}\n")
+            self.is_playing == (self.score > 0)
